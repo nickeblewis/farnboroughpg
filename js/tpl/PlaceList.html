@@ -1,0 +1,13 @@
+<ul class="topcoat-list list">
+<% _.each(places, function(place) { %>
+    <li class="topcoat-list__item">
+        <a href="#places/<%= place.id %>">
+<!--             <img src='pics/<%= place.firstName %>_<%= place.lastName %>.jpg'/>
+ -->            <h1><%= place.place %></h1>
+            <!-- <p><%= place.firstName %> <%= place.lastName %></p>
+            <p><%= place.title %></p>
+            <span class="chevron"></span><span class="count"><%= place.reports %></span> -->
+        </a>
+    </li>
+<% }); %>
+</ul>

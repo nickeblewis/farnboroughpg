@@ -5,7 +5,7 @@ define(function (require) {
     var $                   = require('jquery'),
         _                   = require('underscore'),
         Backbone            = require('backbone'),
-        tpl                 = require('text!tpl/EmployeeList.html'),
+        tpl                 = require('text!tpl/PlaceList.html'),
 
         template = _.template(tpl);
 
@@ -17,7 +17,7 @@ define(function (require) {
         },
 
         render: function () {
-            this.$el.html(template({employees: this.collection.toJSON()}));
+            this.$el.html(template({places: this.collection.toJSON()}));
             return this;
         }
 

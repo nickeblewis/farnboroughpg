@@ -5,7 +5,7 @@ define(function (require) {
     var $                   = require('jquery'),
         Backbone            = require('backbone'),
 
-        employees = [
+        places = [
             {"id": 1, "place": "Zaffron", "firstName": "James", "lastName": "King", "managerId": 0, "managerName": "", "reports": 4, "title": "President and CEO", "department": "Corporate", "cellPhone": "617-000-0001", "officePhone": "781-000-0001", "email": "jking@fakemail.com", "city": "Boston, MA", "pic": "james_king.jpg", "twitterId": "@fakejking", "blog": "http://coenraets.org"},
             {"id": 2, "place": "St Michaels Abbey", "firstName": "Julie", "lastName": "Taylor", "managerId": 1, "managerName": "James King", "reports": 2, "title": "VP of Marketing", "department": "Marketing", "cellPhone": "617-000-0002", "officePhone": "781-000-0002", "email": "jtaylor@fakemail.com", "city": "Boston, MA", "pic": "julie_taylor.jpg", "twitterId": "@fakejtaylor", "blog": "http://coenraets.org"},
             {"id": 3, "place": "Farnborough Main Train Station", "firstName": "Eugene", "lastName": "Lee", "managerId": 1, "managerName": "James King", "reports": 0, "title": "CFO", "department": "Accounting", "cellPhone": "617-000-0003", "officePhone": "781-000-0003", "email": "elee@fakemail.com", "city": "Boston, MA", "pic": "eugene_lee.jpg", "twitterId": "@fakeelee", "blog": "http://coenraets.org"},
@@ -22,23 +22,23 @@ define(function (require) {
 
         findById = function (id) {
             var deferred = $.Deferred(),
-                employee = null,
-                l = employees.length,
+                place = null,
+                l = places.length,
                 i;
             for (i = 0; i < l; i = i + 1) {
-                if (employees[i].id === id) {
-                    employee = employees[i];
+                if (places[i].id === id) {
+                    place = places[i];
                     break;
                 }
             }
-            deferred.resolve(employee);
+            deferred.resolve(place);
             return deferred.promise();
         },
 
         findByName = function (searchKey) {
             var deferred = $.Deferred(),
-                results = employees.filter(function (element) {
-                    var fullName = element.firstName + " " + element.lastName;
+                results = places.filter(function (element) {
+                    var fullName = element.place + " " + element.firstName + " " + element.lastName;
                     return fullName.toLowerCase().indexOf(searchKey.toLowerCase()) > -1;
                 });
             deferred.resolve(results);
@@ -47,7 +47,7 @@ define(function (require) {
 
         findByManager = function (managerId) {
             var deferred = $.Deferred(),
-                results = employees.filter(function (element) {
+                results = places.filter(function (element) {
                     return managerId === element.managerId;
                 });
             deferred.resolve(results);
@@ -55,7 +55,7 @@ define(function (require) {
         },
 
 
-        Employee = Backbone.Model.extend({
+        Place = Backbone.Model.extend({
 
             initialize: function () {
                 this.reports = new ReportsCollection();
@@ -72,9 +72,9 @@ define(function (require) {
 
         }),
 
-        EmployeeCollection = Backbone.Collection.extend({
+        PlaceCollection = Backbone.Collection.extend({
 
-            model: Employee,
+            model: Place,
 
             sync: function (method, model, options) {
                 if (method === "read") {
@@ -88,7 +88,7 @@ define(function (require) {
 
         ReportsCollection = Backbone.Collection.extend({
 
-            model: Employee,
+            model: Place,
 
             sync: function (method, model, options) {
                 if (method === "read") {
@@ -101,8 +101,8 @@ define(function (require) {
         });
 
     return {
-        Employee: Employee,
-        EmployeeCollection: EmployeeCollection,
+        Place: Place,
+        PlaceCollection: PlaceCollection,
         ReportsCollection: ReportsCollection
     };
 

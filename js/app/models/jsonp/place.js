@@ -5,22 +5,22 @@ define(function (require) {
     var $                   = require('jquery'),
         Backbone            = require('backbone'),
 
-        Employee = Backbone.Model.extend({
+        Place = Backbone.Model.extend({
 
-            urlRoot: "http://localhost:3000/employees",
+            urlRoot: "http://localhost:3000/places",
 
             initialize: function () {
-                this.reports = new EmployeeCollection();
+                this.reports = new PlaceCollection();
                 this.reports.url = this.urlRoot + "/" + this.id + "/reports";
             }
 
         }),
 
-        EmployeeCollection = Backbone.Collection.extend({
+        PlaceCollection = Backbone.Collection.extend({
 
-            model: Employee,
+            model: Place,
 
-            url: "http://localhost:3000/employees"
+            url: "http://localhost:3000/places"
 
         }),
 
@@ -34,8 +34,8 @@ define(function (require) {
     };
 
     return {
-        Employee: Employee,
-        EmployeeCollection: EmployeeCollection
+        Place: Place,
+        PlaceCollection: PlaceCollection
     };
 
 });

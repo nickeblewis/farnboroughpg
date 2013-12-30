@@ -15,8 +15,8 @@ define(function (require) {
 
         routes: {
             "": "home",
-            "employees/:id": "employeeDetails",
-            "employees/:id/reports": "reports"
+            "places/:id": "placeDetails",
+            "places/:id/reports": "reports"
         },
 
         home: function () {
@@ -24,21 +24,21 @@ define(function (require) {
             slider.slidePage(homeView.$el);
         },
 
-        employeeDetails: function (id) {
-            require(["app/models/employee", "app/views/Employee"], function (models, EmployeeView) {
-                var employee = new models.Employee({id: id});
-                employee.fetch({
+        placeDetails: function (id) {
+            require(["app/models/place", "app/views/Place"], function (models, PlaceView) {
+                var place = new models.Place({id: id});
+                place.fetch({
                     success: function (data) {
-                        slider.slidePage(new EmployeeView({model: data}).$el);
+                        slider.slidePage(new PlaceView({model: data}).$el);
                     }
                 });
             });
         },
 
         reports: function (id) {
-            require(["app/models/employee", "app/views/Reports"], function (models, ReportsView) {
-                var employee = new models.Employee({id: id});
-                employee.fetch({
+            require(["app/models/place", "app/views/Reports"], function (models, ReportsView) {
+                var place = new models.Place({id: id});
+                place.fetch({
                     success: function (data) {
                         slider.slidePage(new ReportsView({model: data}).$el);
                     }
