@@ -17,6 +17,7 @@ define(function (require) {
         initialize: function () {
             this.placeList = new models.PlaceCollection();
             this.render();
+            
         },
 
         render: function () {
@@ -27,7 +28,17 @@ define(function (require) {
 
         events: {
             "keyup .search-key":    "search",
-            "keypress .search-key": "onkeypress"
+            "keypress .search-key": "onkeypress",
+            "click .slide-menu-button": "onmenuclick"
+        },
+
+        onmenuclick: function (event) {
+            var cl = document.body.classList;
+            if (cl.contains('left-nav')) {
+                cl.remove('left-nav');
+            } else {
+                cl.add('left-nav');
+            }
         },
 
         search: function (event) {

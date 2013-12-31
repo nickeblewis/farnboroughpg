@@ -1,12 +1,17 @@
 <div class="topcoat-navigation-bar">
     <div class="topcoat-navigation-bar__item left quarter">
-        <a class="topcoat-icon-button--quiet back-button" href="#">
-          <span class="topcoat-icon topcoat-icon--back"></span>
-        </a>
-    </div>
-    <div class="topcoat-navigation-bar__item center half">
-        <h1 class="topcoat-navigation-bar__title">Place</h1>
-    </div>
+    <a id="slide-menu-button" class="topcoat-icon-button--quiet slide-menu-button">
+        <span class="topcoat-icon topcoat-icon--menu-stack"></span>
+    </a>
+  </div>
+  <div class="topcoat-navigation-bar__item center half">
+    <h1 class="topcoat-navigation-bar__title"><%= place %></h1>
+  </div>
+  <div class="topcoat-navigation-bar__item right quarter">
+    <a class="topcoat-icon-button--quiet" onclick="alert('Search clicked')">
+        <span class="topcoat-icon icon-search"></span>
+    </a>
+  </div>
 </div>
 
 <div class='details'>
